@@ -590,6 +590,7 @@ pre code {
 	.container {
 		max-width: 540px;
 	}
+	
 }
 
 @media (min-width: 768px) {
@@ -2243,6 +2244,7 @@ pre code {
 		width: 100%;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
+		font-style: italic;
 	}
 
 	.table-responsive-xl>.table-bordered {
@@ -11780,7 +11782,7 @@ h5,
 }
 
 .table {
-	min-width: 1000px !important;
+	min-width: 320px !important;	
 	width: 100%;
 	-webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
 	-moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
@@ -11816,10 +11818,15 @@ h5,
 .table tbody th,
 .table tbody td {
 	border: none;
-	padding: 30px;
+	padding: 10px;
 	font-size: 14px;
 	background: #fff;
 	vertical-align: middle;
+}
+
+
+.table tbody td.status {
+	text-align: center;
 }
 
 .table tbody td.status span {
@@ -11876,7 +11883,7 @@ h5,
 }
 
 .table tbody td .email span:last-child {
-	font-size: 12px;
+	/*font-size: 12px;*/
 	color: rgba(0, 0, 0, 0.3);
 }
 
@@ -11949,4 +11956,32 @@ h5,
 
 .checkbox-primary input:checked~.checkmark:after {
 	color: #40bfc1;
+}
+
+@media (max-width: 500px) {
+	.table thead th {
+		font-size: 14px;
+		padding: 2px 15px 2px 25px;
+	}
+
+	.table tbody td {
+		font-size: 10px;
+	}
+
+	.table tbody td.status span:after {
+		position: absolute;
+		top: 8px;
+		left: 11px;
+		width: 8px;
+		height: 8px;
+		content: '';
+		border-radius: 50%;
+	}
+
+	.ftco-section {
+		padding: 5em 0;
+	}
+	
+
+	
 }
