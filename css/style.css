@@ -11968,23 +11968,21 @@ h5,
 @media (max-width: 500px) {
 	.table thead th {
 		font-size: 14px;
-		padding: 2px 5px 2px 5px;
 	}
 
 	.table tbody td {
 		font-size: 10px;
-		
+		min-width: 66px;
 	}
 
 	.table tbody td.status span:after {
 		position: absolute;
 		top: 8px;
-		left: 11px;
+		left: 9px;
 		width: 8px;
 		height: 8px;
 		content: '';
 		border-radius: 50%;
-		
 	}
 
 	.ftco-section {
