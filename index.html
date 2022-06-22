@@ -12,22 +12,22 @@
 		
 	</head>
 	<body>
-		<div class="header">
+		<header>
 			<img src="images/Dark_Father.ico" alt="logo" height="50">
 			<a href="#" class="logo">Doom Gauntlet - Monitor</a>
 			<div class="header-right">
 				<a href="#contact">Contact</a>
 				<a href="#about">About</a>
 			</div>
-		</div>
+		</header>
 		<section class="ftco-section">
-			<div class="container">				
+			<div class="container">					
 				<div class="table-wrap">
 					<table class="table table-responsive-x1">
 						<thead>
 							<tr>
 								<th>Player</th>
-								<th>Char</th>
+								<th>Room</th>
 								<th>Status</th>
 							</tr>
 						</thead>
@@ -67,7 +67,13 @@
 						// ---- DIV ELEMENT 2	
 						var div2 = document.createElement("div");	
 						div2.setAttribute('class', 'pl-3 email'); 
-						div2.innerHTML = '<span>user@email.com</span><span>Last Seen: '+ res[key][1] +'</span>';
+						if (res[key][0]){ 
+							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: Now </span>';
+
+						}else{
+							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: '+ res[key][1] +'</span>';
+						}
+						
 						col1.appendChild(div2);
 						row.appendChild(col1);
 						// ---- END CREATING TABLE COLUMN 1	
@@ -75,7 +81,7 @@
 						// ---- CREATING TABLE COLUMN 2
 						var col2 = document.createElement("td");	
 						col2.setAttribute('class', 'char_name'); 
-						col2.innerHTML = key;
+						col2.innerHTML = '-';
 						row.appendChild(col2);
 						// ---- END CREATING TABLE COLUMN 2	
 
