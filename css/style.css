@@ -11977,12 +11977,19 @@ h5,
 		min-width: 70px;
 	}
 
+	.table tbody td.status span {
+		position: relative;
+		border-radius: 30px;
+		padding: 4px 10px 4px 20px;
+	}
+	
+
 	.table tbody td.status span:after {
 		position: absolute;
-		top: 8px;
+		top: 9px;
 		left: 9px;
-		width: 8px;
-		height: 8px;
+		width: 7px;
+		height: 7px;
 		content: '';
 		border-radius: 50%;
 
