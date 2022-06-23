@@ -11791,7 +11791,7 @@ h5,
 
 .table thead th {
 	border: none;
-	padding: 10px 10px 10px 20px;
+	padding: 10px 10px 10px 10px;
 	font-size: 20px;
 	font-weight: 500;
 	color: white;
@@ -11974,7 +11974,7 @@ h5,
 
 	.table tbody td {
 		font-size: 10px;
-		min-width: 66px;
+		min-width: 70px;
 	}
 
 	.table tbody td.status span:after {
@@ -11985,6 +11985,7 @@ h5,
 		height: 8px;
 		content: '';
 		border-radius: 50%;
+
 	}
 
 	.ftco-section {
