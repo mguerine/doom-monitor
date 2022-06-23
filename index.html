@@ -7,8 +7,10 @@
 		<link rel="icon" type="image/x-icon" href="images/Dark_Father.ico">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' el='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+		<link rel="stylesheet" href="css/modal.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/header.css">
+		
 		
 	</head>
 	<body>
@@ -17,9 +19,22 @@
 			<a href="#" class="logo">Doom Gauntlet - Monitor</a>
 			<div class="header-right">
 				<a href="#contact">Contact</a>
-				<a href="#about">About</a>
+				<a href="#popup">About</a>
 			</div>
 		</header>
+
+		<div class="popup" id="popup">
+			<div class="popup-inner">
+				<div class="popup__photo">
+					<img src="images/doom-gauntlet.png" alt="">
+				</div>
+				<div class="popup__text">
+					<h1>One Script to rule them all</h1>
+					<p>This is a all-in-one <a href="https://uo.com/" target="_blank">Ultima Online</a> script based on <a href="https://stealth.od.ua/" target="_blank">Stealth assistant </a> intended run over Doom Gauntlet dungeon rooms. The script automatically detects which room is active, run towards it, honor and attack the boss, cast spells,  heal self and run away if in danger, and auto insure artifacts and looted jewelery. If you die, the macro goes for the safe room to ressurrect, reequip your gear and get back to combat. When necessary, the macro also try to fix your equipement, depending on whether you have a helper bot set or not. Finally, the macro send discord notifications using webhook to warn you from main situations, such as artifacts, deaths, equipament and stuck issues, and GM appearances for afk checks. Although this script is been tested for more than two years, it is not free of bugs. If you find any, please report it to Marcos Guerine#4564 </p>
+					</div>
+				<a class="popup__close" href="#">X</a>
+			</div>
+		</div>  
 		<section class="ftco-section">
 			<div class="container">					
 				<div class="table-wrap">
