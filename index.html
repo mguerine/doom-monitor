@@ -52,17 +52,7 @@
 			</div>
 		</section>
 		<script>
-			function changeTimeZone(date, local, _timeZone) {
-				var options = { month: '2-digit', year: 'numeric',  day: 'numeric', hour: '2-digit', minute: '2-digit',  timeZone: _timeZone };
-				if (typeof date === 'string') {
-					return new Date(date).toLocaleString(local, options);
-				}
-
-				return new Date(
-					date.toLocaleString(local, options),
-				);
-			}
-			
+		
 			var url = 'https://doom-monitor-api.herokuapp.com'
 			var xhr = new XMLHttpRequest()
 			xhr.open('GET', url, true)
@@ -71,15 +61,6 @@
 					const res = JSON.parse(xhr.responseText);
 					//document.getElementById("print_table").innerHTML = xhr.responseText;
 					for (const key in res){	
-						
-						var date_us = changeTimeZone(res[key][1].replace(/-/g,"/"), 'en-US', 'America/Denver');
-						var date_br = changeTimeZone(date_us, 'pt-BR', 'America/Sao_Paulo');
-						data = date_br.split(' ');						
-						year = data[0].split('/')[2]
-						month = data[0].split('/')[1]
-						day = data[0].split('/')[0]
-						date_br = year+'-'+month+'-'+day + ' '+ data[1];
-						console.log(year+'-'+month+'-'+day + ' '+ data[1]);
 					
 						// ---- CREATING TABLE ROW
 						var row = document.createElement("tr");	
@@ -104,7 +85,7 @@
 							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: Now </span>';
 
 						}else{
-							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: '+ date_br +'</span>';
+							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: '+ res[key][1] +'</span>';
 						}
 
 						
