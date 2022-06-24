@@ -1,14 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600&subset=latin-ext');
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-}
-
 .popup {
     display: flex;
     align-items: center;
@@ -107,15 +96,15 @@ html, body {
     text-decoration: none;
   }
 
-@media screen and (max-width: 1050px) {
-    html, body {
+@media screen and (max-width: 1250px) {
+    .popup__text{
         font-size: 14px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    html, body {
-        font-size: 12px;
+@media screen and (max-width: 968px) {
+    .popup__text{
+        font-size: 10px;
     }
     .popup-inner {
         width: 90%;
@@ -124,20 +113,32 @@ html, body {
 
 }
 
-@media screen and (max-width: 500px) {
-    html, body {
-        font-size: 13px;
-    }
+@media screen and (max-width: 768px) {
     .popup__photo {
-        width: 20%;
+        width: 30%;
     }
     .popup-inner {
         width: 90%;
     }
     .popup__text {
         padding: 1.5rem;
-        width: 80%;
+        width: 70%;
+        font-size: 8px;
     }
+}
+
+@media screen and (max-width: 568px) {
+  .popup__photo {
+      width: 0%;
+  }
+  .popup-inner {
+      width: 90%;
+  }
+  .popup__text {
+      padding: 1.5rem;
+      width: 100%;
+      font-size: 8px;
+  }
 }
 
 @media screen and (max-width: 350px) {

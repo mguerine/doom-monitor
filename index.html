@@ -8,8 +8,10 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' el='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
 		<link rel="stylesheet" href="css/modal.css">
+		<link rel="stylesheet" href="css/tooltip.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/header.css">
+		
 	</head>
 	<body>
 		<header>
@@ -39,9 +41,10 @@
 					<table class="table table-responsive-x1">
 						<thead>
 							<tr>
-								<th>Player</th>
-								<th>Room</th>
-								<th>Status</th>
+								<th>Player</th><!--
+								--><th class="hide-mobile"><div class="tip">Room<span>Last room seen</span></div></th><!--
+								--><th><div class="tip">Arty<span>Last artifact dropped</span></div></th><!--
+								--><th><div class="tip">Status<span>Based on last 10 minutes</span></div></th>
 							</tr>
 						</thead>
 						<tbody id="print_table">
@@ -55,10 +58,11 @@
 		
 			var url = 'https://doom-monitor-api.herokuapp.com'
 			var xhr = new XMLHttpRequest()
-			xhr.open('GET', url, true)
+			xhr.open('POST', url, true)
 			xhr.onreadystatechange = () => {
 				if (xhr.readyState === XMLHttpRequest.DONE) {
 					const res = JSON.parse(xhr.responseText);
+					console.log(res);
 					//document.getElementById("print_table").innerHTML = xhr.responseText;
 					for (const key in res){	
 					
@@ -74,18 +78,18 @@
 						
 						// ---- DIV ELEMENT 1	
 						var div1 = document.createElement("div");	
-						div1.setAttribute('class', 'img'); 
+						div1.setAttribute('class', 'img hide-mobile'); 
 						div1.setAttribute('style', 'background-image: url(images/user.png);'); 
 
 						col1.appendChild(div1);
 						// ---- DIV ELEMENT 2	
 						var div2 = document.createElement("div");	
 						div2.setAttribute('class', 'pl-3 email'); 
-						if (res[key][0]){ 
-							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: Now </span>';
+						if (res[key]['online']){ 
+							div2.innerHTML = '<span>' + res[key]['name'] + '</span><span>Last Seen: Now </span>';
 
 						}else{
-							div2.innerHTML = '<span>' + key + '</span><span>Last Seen: '+ res[key][1] +'</span>';
+							div2.innerHTML = '<span>' + res[key]['name'] + '</span><span>Last Seen: '+ res[key]['last_seen'] +'</span>';
 						}
 
 						
@@ -95,26 +99,37 @@
 
 						// ---- CREATING TABLE COLUMN 2
 						var col2 = document.createElement("td");	
-						col2.setAttribute('class', 'char_name'); 
-						col2.innerHTML = '-';
+						col2.setAttribute('class', 'last_room'); 
+						col2.innerHTML = res[key]['last_room'];
 						row.appendChild(col2);
 						// ---- END CREATING TABLE COLUMN 2	
 
 						// ---- CREATING TABLE COLUMN 3
 						var col3 = document.createElement("td");	
-						col3.setAttribute('class', 'status'); 
-						if (res[key][0]){ 
-							col3.innerHTML = '<span class="active"> on </span>'
+						col3.setAttribute('class', 'last_arty hide-mobile');
+
+						if (res[key]['last_arty'] == ''){ 
+							col3.innerHTML = ' - ';
 						} else {
-							col3.innerHTML = '<span class="off"> off </span>' 
+							col3.innerHTML = res[key]['last_arty'];
+						};						
+						row.appendChild(col3);
+						// ---- END CREATING TABLE COLUMN 3
+
+						// ---- CREATING TABLE COLUMN 4
+						var col4 = document.createElement("td");	
+						col4.setAttribute('class', 'status'); 
+						if (res[key]['online']){ 
+							col4.innerHTML = '<span class="active"> on </span>'
+						} else {
+							col4.innerHTML = '<span class="off"> off </span>' 
 						};
-						row.appendChild(col3);						
-						// ---- END CREATING TABLE COLUMN 3	
+						row.appendChild(col4);						
+						// ---- END CREATING TABLE COLUMN 4	
 
 						//tr_el.innerHTML = '<span>' +  + '</span>';
 						const box = document.getElementById("print_table");
-						box.appendChild(row);
-						console.log(`${key} : ${res[key]}`)										
+						box.appendChild(row);							
 					}					
 				}
 			};
