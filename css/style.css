@@ -11787,9 +11787,9 @@ h5,
 	background-position: center center;
 }
 
-.table-wrap {
+/*.table-wrap {
 	overflow-x: auto;
-}
+}*/
 
 .table {
 	min-width: 320px !important;	
