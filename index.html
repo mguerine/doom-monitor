@@ -19,12 +19,12 @@
 			<a href="#" class="logo">Doom Gauntlet - Monitor</a>
 			<div class="header-right">
 				<a href="#contact">Contact</a>
-				<a href="#popup">About</a>
+				<a href="#popup" id="about">About</a>
 			</div>
 		</header>
 
 		<div class="popup" id="popup">
-			<div class="popup-inner">
+			<div class="popup-inner" id="popup-inner">
 				<div class="popup__photo">
 					<img src="images/doom-gauntlet.png" alt="">
 				</div>
@@ -32,7 +32,7 @@
 					<h1>One Script to rule them all</h1>
 					<p>This is a all-in-one <a href="https://uo.com/" target="_blank">Ultima Online</a> script based on <a href="https://stealth.od.ua/" target="_blank">Stealth assistant </a> intended to run over Doom Gauntlet dungeon rooms. The script automatically detects which room is active, run towards it, honor and attack the boss, cast spells, heal self, run away if in danger, and auto insure artifacts and looted jewelry. If you die, the macro takes you to safe room to ressurrect, reequip your gear and get back in combat. When necessary, the macro also tries to fix your equipment, depending on whether you have a helper bot set or not. Finally, the macro sends discord notifications using webhook to warn you from main situations, such as artifacts, deaths, equipment, stuck issues, and GM appearances for afk checks. Although this script is been tested for more than two years, it is not free of bugs. If you find any, please report it to Marcos Guerine#4564 </p>
 					</div>
-				<a class="popup__close" href="#">X</a>
+				<a class="popup__close" id="popup__close" href="#">X</a>
 			</div>
 		</div>  
 		<section class="ftco-section">
@@ -54,6 +54,14 @@
 				</div>
 			</div>
 		</section>
+		<script>
+			window.addEventListener('mouseup',function(event){
+				var popup = document.getElementById('popup');
+				if(event.target == popup){
+					document.getElementById('popup__close').click();
+				}
+			});  
+		</script>
 		<script>
 		
 			var url = 'https://doom-monitor-api.herokuapp.com'
@@ -131,62 +139,63 @@
 						//tr_el.innerHTML = '<span>' +  + '</span>';
 						const box = document.getElementById("print_table");
 						box.appendChild(row);							
-					}					
+					}		
+					if(Object.keys( res ).length < 1){
+						// ---- CREATING TABLE ROW
+						var row = document.createElement("tr");	
+						row.setAttribute('class', 'alert');
+						row.setAttribute('role', 'alert');
+						
+						// ---- CREATING TABLE COLUMN 1
+						var col1 = document.createElement("td");	
+						col1.setAttribute('class', 'd-flex align-items-center'); 
+						//col1.innerHTML = res[key][0];
+						
+						// ---- DIV ELEMENT 1	
+						var div1 = document.createElement("div");	
+						div1.setAttribute('class', 'img hide-mobile'); 
+						div1.setAttribute('style', 'background-image: url(images/user.png);'); 
+
+						col1.appendChild(div1);
+						// ---- DIV ELEMENT 2	
+						var div2 = document.createElement("div");	
+						div2.setAttribute('class', 'pl-3 email'); 
+						div2.innerHTML = '<span> - </span><span>Last Seen: - </span>';
+						
+						col1.appendChild(div2);
+						row.appendChild(col1);
+						// ---- END CREATING TABLE COLUMN 1	
+
+						// ---- CREATING TABLE COLUMN 2
+						var col2 = document.createElement("td");	
+						col2.setAttribute('class', 'last_room'); 
+						col2.innerHTML = ' - ';
+						row.appendChild(col2);
+						// ---- END CREATING TABLE COLUMN 2	
+
+						// ---- CREATING TABLE COLUMN 3
+						var col3 = document.createElement("td");	
+						col3.setAttribute('class', 'last_arty hide-mobile');
+
+						
+						col3.innerHTML = ' - ';
+						row.appendChild(col3);
+						// ---- END CREATING TABLE COLUMN 3
+
+						// ---- CREATING TABLE COLUMN 4
+						var col4 = document.createElement("td");	
+						col4.setAttribute('class', 'status'); 
+						col4.innerHTML = '<span class="off"> off </span>' 
+						row.appendChild(col4);						
+						// ---- END CREATING TABLE COLUMN 4	
+
+						//tr_el.innerHTML = '<span>' +  + '</span>';
+						const box = document.getElementById("print_table");
+						box.appendChild(row);	
+						
+					}			
 				}
-				if(Object.keys( res ).length < 1){
-					// ---- CREATING TABLE ROW
-					var row = document.createElement("tr");	
-					row.setAttribute('class', 'alert');
-					row.setAttribute('role', 'alert');
-					
-					// ---- CREATING TABLE COLUMN 1
-					var col1 = document.createElement("td");	
-					col1.setAttribute('class', 'd-flex align-items-center'); 
-					//col1.innerHTML = res[key][0];
-					
-					// ---- DIV ELEMENT 1	
-					var div1 = document.createElement("div");	
-					div1.setAttribute('class', 'img hide-mobile'); 
-					div1.setAttribute('style', 'background-image: url(images/user.png);'); 
-
-					col1.appendChild(div1);
-					// ---- DIV ELEMENT 2	
-					var div2 = document.createElement("div");	
-					div2.setAttribute('class', 'pl-3 email'); 
-					div2.innerHTML = '<span> - </span><span>Last Seen: - </span>';
-					
-					col1.appendChild(div2);
-					row.appendChild(col1);
-					// ---- END CREATING TABLE COLUMN 1	
-
-					// ---- CREATING TABLE COLUMN 2
-					var col2 = document.createElement("td");	
-					col2.setAttribute('class', 'last_room'); 
-					col2.innerHTML = ' - ';
-					row.appendChild(col2);
-					// ---- END CREATING TABLE COLUMN 2	
-
-					// ---- CREATING TABLE COLUMN 3
-					var col3 = document.createElement("td");	
-					col3.setAttribute('class', 'last_arty hide-mobile');
-
-					
-					col3.innerHTML = ' - ';
-					row.appendChild(col3);
-					// ---- END CREATING TABLE COLUMN 3
-
-					// ---- CREATING TABLE COLUMN 4
-					var col4 = document.createElement("td");	
-					col4.setAttribute('class', 'status'); 
-					col4.innerHTML = '<span class="off"> off </span>' 
-					row.appendChild(col4);						
-					// ---- END CREATING TABLE COLUMN 4	
-
-					//tr_el.innerHTML = '<span>' +  + '</span>';
-					const box = document.getElementById("print_table");
-					box.appendChild(row);	
-					
-				}
+				
 			};
 			xhr.onerror = function(err) { console.error(err) }
 			xhr.send()
