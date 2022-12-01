@@ -7,13 +7,14 @@
 		<link rel="icon" type="image/x-icon" href="images/Dark_Father.ico">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' el='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 		<link rel="stylesheet" href="css/modal.css">
 		<link rel="stylesheet" href="css/tooltip.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/header.css">
 		
 	</head>
-	<body>
+	<body onload="get_data_api()"> 
 		<header>
 			<img src="images/Dark_Father.ico" alt="logo" height="50">
 			<a href="#" class="logo">Doom Gauntlet - Monitor</a>
@@ -62,9 +63,18 @@
 				}
 			});  
 		</script>
+		<script> 
+			$(document).ready(function(){
+			setInterval(function(){
+				document.getElementById("print_table").innerHTML = "";
+				get_data_api();
+			}, 30000);
+			});
+			</script>
+
 		<script>
-		
-			var url = 'https://doom-monitor-api.herokuapp.com'
+			function get_data_api(){
+				var url = 'https://doom-monitor-api.herokuapp.com'
 			var xhr = new XMLHttpRequest()
 			xhr.open('POST', url, true)
 			xhr.onreadystatechange = () => {
@@ -199,6 +209,9 @@
 			};
 			xhr.onerror = function(err) { console.error(err) }
 			xhr.send()
+
+			}
+			
 		</script>
 
 		<script src="js/jquery.min.js"></script>
